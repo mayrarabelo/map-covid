@@ -24,26 +24,24 @@ function App() {
 
   return (
     <div className='container'>
-      <header className='center'> 
+      <header className='center'>
         <h1>Dados globais da COVID-19</h1>
         <p>Veja abaixo dados de alguns países:</p>
       </header>
 
       <main>
-
         <ul>
-          
           {countriesSlice.map(repo => {
             return (
-              <li  className='box' key={repo.CountryCode}>
-                <strong className='flex flex-center'>{repo.Country}</strong>
-                <p>Novos casos confirmados: <strong>{repo.NewConfirmed}</strong></p>
+              <li className='box' key={repo.CountryCode}>
+                <h2 className='center'>{repo.Country}</h2>
                 <p>Total de casos confirmados: <strong>{repo.TotalConfirmed}</strong></p>
-                <p>Novas mortes: <strong>{repo.NewDeaths}</strong></p>
+                <p>Novos casos confirmados: <strong>{repo.NewConfirmed}</strong></p>
                 <p>Total de mortes: <strong>{repo.TotalDeaths}</strong></p>
-                <p>Novos recuperados: <strong>{repo.NewRecovered}</strong></p>
+                <p>Novas mortes: <strong>{repo.NewDeaths}</strong></p>
                 <p>Total de recuperados <strong>{repo.TotalRecovered}</strong></p>
-                <p>Data: <strong>{repo.Date}</strong></p>
+                <p>Novos recuperados: <strong>{repo.NewRecovered}</strong></p>
+                <p>Data: <strong><Moment format="DD/MM/YYYY">{repo.Date}</Moment></strong></p>
               </li>
             )
           })}
@@ -52,8 +50,7 @@ function App() {
 
       <footer className='center'>
         <p>©Copyright 2022 by Mayra S Rabelo</p>
-      </footer>      
-      
+      </footer>
     </div >
   )
 
