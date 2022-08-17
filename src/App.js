@@ -20,16 +20,21 @@ function App () {
 
   ramdon();
 
-
   return (
-    <div>
-      teste
-      <ul>
+    <div className='container'>
+      <header className='center'> 
+        <h1>Dados globais da COVID-19</h1>
+        <p>Veja abaixo dados de alguns países:</p>
+      </header>
+
+      <main>
+
+        <ul>
           
           {countriesSlice.map(repo => {
             return (
-              <li key={repo.CountryCode}>
-                <strong >{repo.Country}</strong>
+              <li  className='box' key={repo.CountryCode}>
+                <strong className='flex flex-center'>{repo.Country}</strong>
                 <p>Novos casos confirmados: {repo.NewConfirmed}</p>
                 <p>Total de casos confirmados: {repo.TotalConfirmed}</p>
                 <p>Novas mortes: {repo.NewDeaths}</p>
@@ -41,8 +46,14 @@ function App () {
             )
           })}
         </ul>
+      </main>
+
+      <footer className='center'>
+        <p>©Copyright 2022 by Mayra S Rabelo</p>
+      </footer>      
+      
     </div>
-  )  
+  ) 
 
 }
 
