@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import api from './services/api';
+import { useEffect, useState } from 'react';
 
-function App() {
+function App () {
+
+  const [countries, setCountries] = useState([]);
+  var countriesSlice = [];
+
+  useEffect(() => {
+    api.get('summary')
+      .then((response) =>
+      setCountries(response.data.Countries))      
+  }, []);
+
+  function ramdon(){
+    countriesSlice = countries.sort(()=> Math.random() - 0.5).slice(0,10);
+    console.log('slice: ', countries)
+  }
+
+  ramdon();
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      teste
+      <ul>
+          
+          {countriesSlice.map(repo => {
+            return (
+              <li key={repo.CountryCode}>
+                <strong >{repo.Country}</strong>
+                <p>Novos casos confirmados: {repo.NewConfirmed}</p>
+                <p>Total de casos confirmados: {repo.TotalConfirmed}</p>
+                <p>Novas mortes: {repo.NewDeaths}</p>
+                <p>Total de mortes: {repo.TotalDeaths}</p>
+                <p>Novos recuperados: {repo.NewRecovered}</p>
+                <p>Total de recuperados {repo.TotalRecovered}</p>
+                <p>Data: {repo.Date}</p>
+              </li>
+            )
+          })}
+        </ul>
     </div>
-  );
+  )  
+
 }
 
-export default App;
+export default App
