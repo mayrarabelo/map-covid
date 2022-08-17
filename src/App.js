@@ -1,8 +1,10 @@
 import './App.css';
 import api from './services/api';
 import { useEffect, useState } from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
-function App () {
+function App() {
 
   const [countries, setCountries] = useState([]);
   var countriesSlice = [];
@@ -10,11 +12,11 @@ function App () {
   useEffect(() => {
     api.get('summary')
       .then((response) =>
-      setCountries(response.data.Countries))      
+        setCountries(response.data.Countries))
   }, []);
 
-  function ramdon(){
-    countriesSlice = countries.sort(()=> Math.random() - 0.5).slice(0,10);
+  function ramdon() {
+    countriesSlice = countries.sort(() => Math.random() - 0.5).slice(0, 10);
     console.log('slice: ', countries)
   }
 
@@ -35,13 +37,13 @@ function App () {
             return (
               <li  className='box' key={repo.CountryCode}>
                 <strong className='flex flex-center'>{repo.Country}</strong>
-                <p>Novos casos confirmados: {repo.NewConfirmed}</p>
-                <p>Total de casos confirmados: {repo.TotalConfirmed}</p>
-                <p>Novas mortes: {repo.NewDeaths}</p>
-                <p>Total de mortes: {repo.TotalDeaths}</p>
-                <p>Novos recuperados: {repo.NewRecovered}</p>
-                <p>Total de recuperados {repo.TotalRecovered}</p>
-                <p>Data: {repo.Date}</p>
+                <p>Novos casos confirmados: <strong>{repo.NewConfirmed}</strong></p>
+                <p>Total de casos confirmados: <strong>{repo.TotalConfirmed}</strong></p>
+                <p>Novas mortes: <strong>{repo.NewDeaths}</strong></p>
+                <p>Total de mortes: <strong>{repo.TotalDeaths}</strong></p>
+                <p>Novos recuperados: <strong>{repo.NewRecovered}</strong></p>
+                <p>Total de recuperados <strong>{repo.TotalRecovered}</strong></p>
+                <p>Data: <strong>{repo.Date}</strong></p>
               </li>
             )
           })}
@@ -52,8 +54,8 @@ function App () {
         <p>©Copyright 2022 by Mayra S Rabelo</p>
       </footer>      
       
-    </div>
-  ) 
+    </div >
+  )
 
 }
 
